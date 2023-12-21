@@ -62,7 +62,7 @@ const ListTable = ({
         },
       }
     );
-    // console.log(response);
+    console.log(response);
     setRefresh(!refresh);
   };
 

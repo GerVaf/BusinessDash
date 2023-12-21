@@ -55,7 +55,7 @@ const List = () => {
           }&page=${page}&limit=${limit}
           `
         );
-        // console.log(response);
+        console.log(response);
         setData(response?.data?.data);
         setPagination(response?.data?.pagination);
         setLoading(false);
