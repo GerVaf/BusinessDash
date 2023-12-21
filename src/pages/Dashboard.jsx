@@ -70,7 +70,8 @@ const Dashboard = () => {
       } catch (error) {
         if (error?.response?.status === 403) {
           return setTimeout(function () {
-            window.location.000);
+            window.location.reload();
+          }, 3000);
         } else {
           nav("/login");
         }

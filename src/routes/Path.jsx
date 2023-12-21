@@ -19,6 +19,11 @@ import CreateWithDrapAndDrop from "../components/CreateBlog/CreateWithDrapAndDro
 import Detail from "../pages/Detail";
 import SelectUser from "../pages/SelectUser";
 import HashTag from "../pages/HashTag";
+import ContentList from "../pages/ContentList";
+import ZZ from "../pages/ZZ";
+import UserList from "../pages/UserList";
+import Ads from "../pages/Ads";
+import Sites from "../pages/Sites";
 
 const Path = () => {
   const routes = [
@@ -73,6 +78,26 @@ const Path = () => {
     {
       path: "hashtag",
       element: <HashTag />,
+    },
+    {
+      path: "userList",
+      element: <UserList/>,
+    },
+    {
+      path: "contentList",
+      element: <ContentList />,
+    },
+    {
+      path: "ZZ",
+      element: <ZZ />,
+    },
+    {
+      path: "ZZ/Ads",
+      element: <Ads />,
+    },
+    {
+      path: "ZZ/Sites",
+      element: <Sites />,
     },
   ];
   return (

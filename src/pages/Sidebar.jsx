@@ -5,14 +5,17 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { RxDash } from "react-icons/rx";
 import { BsDot } from "react-icons/bs";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { FaListAlt } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import logo from "../../public/logotext.svg";
 import whitelogo from "../../public/whiteLogo.svg";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { logOut } from "../Global/Slice/AuthSlice";
-const Sidebar = ({darkMode}) => {
 
+const Sidebar = ({ darkMode }) => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(1);
 
@@ -47,6 +50,36 @@ const Sidebar = ({darkMode}) => {
       path: "program",
       icon: <HiVideoCamera />,
     },
+    {
+      id: 4,
+      name: "User List",
+      path: "userList",
+      icon: <BsFillPeopleFill />,
+    },
+    {
+      id: 5,
+      name: "Content List",
+      path: "contentList",
+      icon: <FaListAlt />,
+    },
+    {
+      id: 6,
+      name: "ZZ",
+      path: "ZZ",
+      icon: <RiAdminFill />,
+      child: [
+        {
+          id: 1,
+          name: "Ads",
+          path: "ads",
+        },
+        {
+          id: 2,
+          name: "Sites",
+          path: "sites",
+        },
+      ],
+    },
   ];
 
   useEffect(() => {
@@ -73,11 +106,14 @@ const Sidebar = ({darkMode}) => {
   };
 
   return (
-    <div className="w-full h-[100vh] flex flex-col justify-between items-center gap-10 py-10 dark:bg-secondary dark:backdrop-blur-md">
-      <div className="flex flex-col gap-5">
-        <img className="px-10 h-20 border-b-2 w-full" src={darkMode ? whitelogo : logo} alt="" />
-
-        <div className="w-[90%] flex flex-col gap-8">
+    <div className="w-full h-[100vh] flex flex-col justify-between items-center gap-5 dark:bg-secondary dark:backdrop-blur-md">
+      <img
+        className="px-10 py-3 h-20 border-b-2 w-full"
+        src={darkMode ? whitelogo : logo}
+        alt=""
+      />
+      <div className="flex flex-col h-full gap-5 overflow-y-scroll scrollbar-thin scrollbar-thumb-[#ddd]">
+        <div className="w-full flex flex-col gap-5">
           {mainMenu.map((el) => (
             <div key={el.id}>
               <NavLink
@@ -85,8 +121,9 @@ const Sidebar = ({darkMode}) => {
                 animate={{ scale: 1 }}
                 to={el.path}
                 className={`${
-                  activeItem === el.id ? "bg-white shadow-lg dark:bg-primary" : ""
-
+                  activeItem === el.id
+                    ? "bg-white shadow-lg dark:bg-primary"
+                    : ""
                 } py-3 rounded-lg cursor-pointer text-gray-500 flex justify-between px-10 items-center`}
               >
                 {/* icon and name */}
@@ -128,7 +165,7 @@ const Sidebar = ({darkMode}) => {
               {/* child  */}
               {el.child && activeItem === el.id ? (
                 <motion.div
-                  className="text-gray-600 flex flex-col mt-5"
+                  className="text-gray-600 flex flex-col mt-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -180,7 +217,7 @@ const Sidebar = ({darkMode}) => {
       </div>
 
       <button
-        className="w-[70%] py-2 rounded-3xl hover:bg-red-500 hover:text-white text-red-500 border border-red-500 transition duration-300 "
+        className="w-[70%] py-2 mb-5 rounded-3xl hover:bg-red-500 hover:text-white text-red-500 border border-red-500 transition duration-300 "
         onClick={() => logoutHandler()}
       >
         logout
